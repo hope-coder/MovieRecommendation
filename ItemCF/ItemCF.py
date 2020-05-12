@@ -32,7 +32,7 @@ class ItemBasedCF():
         trainSet_len = 0
         testSet_len = 0
         for line in self.load_file(filename):
-            user, movie, rating, timestamp = line.split(',')
+            user, movie, rating, timestamp = line.split('::')
             if(random.random() < pivot):
                 self.trainSet.setdefault(user, {})
                 self.trainSet[user][movie] = rating
@@ -133,7 +133,7 @@ class ItemBasedCF():
 
 
 if __name__ == '__main__':
-    rating_file = 'D:\\学习资料\\推荐系统\\ml-latest-small\\ratings.csv'
+    rating_file = 'D:/SoftwareInstallDirector/Pychram/pycode/Project/CF/ml-20m/ratings.dat'
     itemCF = ItemBasedCF()
     itemCF.get_dataset(rating_file)
     itemCF.calc_movie_sim()
