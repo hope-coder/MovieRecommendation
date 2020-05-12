@@ -25,7 +25,6 @@ class UserBasedCF():
         print('Similar user number = %d' % self.n_sim_user)
         print('Recommneded movie number = %d' % self.n_rec_movie)
 
-
     # 读文件得到“用户-电影”数据
     def get_dataset(self, filename, pivot=0.75):
         trainSet_len = 0
@@ -44,7 +43,6 @@ class UserBasedCF():
         print('TrainSet = %s' % trainSet_len)
         print('TestSet = %s' % testSet_len)
 
-
     # 读文件，返回文件的每一行
     def load_file(self, filename):
         with open(filename, 'r') as f:
@@ -53,7 +51,6 @@ class UserBasedCF():
                     continue
                 yield line.strip('\r\n')
         print('Load %s success!' % filename)
-
 
     # 计算用户之间的相似度
     def calc_user_sim(self):
@@ -89,7 +86,6 @@ class UserBasedCF():
                 self.user_sim_matrix[u][v] = count / math.sqrt(len(self.trainSet[u]) * len(self.trainSet[v]))
         print('Calculate user similarity matrix success!')
 
-
     # 针对目标用户U，找到其最相似的K个用户，产生N个推荐
     def recommend(self, user):
         K = self.n_sim_user
@@ -105,7 +101,6 @@ class UserBasedCF():
                 rank.setdefault(movie, 0)
                 rank[movie] += wuv
         return sorted(rank.items(), key=itemgetter(1), reverse=True)[0:N]
-
 
     # 产生推荐并通过准确率、召回率和覆盖率进行评估
     def evaluate(self):
@@ -135,7 +130,7 @@ class UserBasedCF():
 
 
 if __name__ == '__main__':
-    rating_file = 'D:\\学习资料\\推荐系统\\ml-latest-small\\ratings.csv'
+    rating_file = 'D:/SoftwareInstallDirector/Pychram/pycode/Project/CF/ml-20m/ratings.csv'
     userCF = UserBasedCF()
     userCF.get_dataset(rating_file)
     userCF.calc_user_sim()
