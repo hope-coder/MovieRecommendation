@@ -67,6 +67,7 @@ class ItemBasedCF():
         self.movie_count = len(self.movie_popular)
         print("Total movie number = %d" % self.movie_count)
 
+        print('Build user co-rated movies matrix ...')
         for user, movies in self.trainSet.items():
             for m1 in movies:
                 for m2 in movies:
